@@ -29,25 +29,13 @@ public_users.get('/',function (req, res) {
 
 
 /* //Get the book list avalaible in the shop using promisses
-public_users.get('/', function(req, res) {
-  const getBooks = () => {
-    return new Promise((resolve, reject) => {
-      if (books) {
-        resolve(books);
-      } else {
-        reject({ error: "No books available" });
-      }
-    });
-  };
-
-
-  getBooks()
-    .then((books) => {
-      res.status(200).json({ message: books });
-    })
-    .catch((error) => {
-      res.status(404).json(error);
-    });
+public_users.get('/', async function (req, res) {
+  try {
+    const books = await getBooks(); 
+    return res.status(200).json({message: books});
+  } catch (error) {
+    return res.status(500).json({error: 'Internal Server Error'});
+  }
 });
 */
 
